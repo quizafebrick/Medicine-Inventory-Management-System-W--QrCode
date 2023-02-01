@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginAndRegister;
+use App\Http\Controllers\MedicinesController;
 use App\Http\Controllers\PublicDirectory;
 use App\Http\Controllers\UsersViewing;
 use Illuminate\Support\Facades\Route;
@@ -34,5 +35,9 @@ Route::controller(LoginAndRegister::class)->group(function () {
 Route::middleware('validateUsersLogin')->group(function () {
     Route::controller(UsersViewing::class)->group(function () {
         Route::get('/u', 'index')->name('users-index');
+    });
+
+    Route::controller(MedicinesController::class)->group(function () {
+        Route::post('/u/save', 'store')->name('medicine-store');
     });
 });

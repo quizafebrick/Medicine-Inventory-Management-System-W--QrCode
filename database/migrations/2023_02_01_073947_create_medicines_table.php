@@ -17,7 +17,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('strength');
+            $table->string('category_name');
+            $table->string('expiration');
+            $table->string('ingredient');
             $table->string('quantity')->default(0);
+            $table->string('image');
             $table->timestamps();
         });
     }

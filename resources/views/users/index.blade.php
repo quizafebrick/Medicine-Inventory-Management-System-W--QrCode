@@ -5,58 +5,105 @@
 
 {{-- * GET THE USER CONTENT, YIELD IN THE HEADER FILE IN PARTIALS * --}}
 @section('users-index-view')
-<h3 class="mt-5 text-4xl font-bold text-center text-black">ALL MEDICINES</h3>
-<div class="mx-10">
-    <div>
-        {{-- * THE BUTTON TO OPEN MODAL * --}}
-        <label for="my-modal-3" class="font-bold text-black hover:ease-in btn bg-amber-500 hover:bg-amber-600 hover:duration-200">open modal</label>
+    {{-- ! ERROR MESSAGE ! --}}
+    @if ($errors->any())
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000,
+                background: '#f64341',
+                color: '#ffff',
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.resumeTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: "There's something wrong..."
+            })
+        </script>
+    @endif
 
-        {{-- * PUT THIS PART BEFORE </BODY> TAG * --}}
-        <input type="checkbox" id="my-modal-3" class="modal-toggle"/>
-        <div class="text-white modal" data-theme="dark">
-            <div class="relative modal-box">
-                <label for="my-modal-3" class="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
-                <div class="mx-5">
-                    <h3 class="text-3xl font-bold">ADD MEDICINE</h3>
-                    <div class="grid grid-cols-2 gap-3 mt-5">
-                        <div class="form-control">
-                            <span class="font-bold">Name:</span>
-                            <input type="text" placeholder="Type here" class="w-full max-w-sm input input-bordered" onkeyup="this.value = this.value.toUpperCase()"/>
-                        </div>
-                        <div class="form-control">
-                            <span class="font-bold">Category:</span>
-                            <select class="w-full max-w-xs select select-bordered">
-                                <option disabled selected class="font-bold text-gray">Choose Category</option>
-                                <option class="font-bold">Han Solo</option>
-                                <option class="font-bold">Greedo</option>
-                            </select>
-                        </div>
-                        <div class="form-control">
-                            <span class="font-bold">Quantity:</span>
-                            <input type="text" placeholder="Enter Quantity" class="w-full max-w-sm input input-bordered" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"/>
-                        </div>
-                        <div class="form-control">
-                            <span class="font-bold">Expiration:</span>
-                            <input type="date" placeholder="Type here" class="w-full max-w-sm input input-bordered"/>
-                        </div>
-                        <div class="form-control">
-                            <span class="font-bold">Strength:</span>
-                            <input type="text" placeholder="Type here" class="w-full max-w-sm input input-bordered"/>
-                        </div>
-                        <div class="form-control">
-                            <span class="font-bold">Ingredients:</span>
-                            <textarea class="resize-none textarea textarea-bordered" placeholder="Ingredients..."></textarea>
-                        </div>
-                        <div class="form-control">
-                            <span class="font-bold">Insert Photo:</span>
-                            <input type="file" class="w-full max-w-xs file-input file-input-bordered file-input-xs" />
-                        </div>
-                    </div>
-                </div>
+    @if (Session::has('error'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000,
+                background: '#f64341',
+                color: '#ffff',
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.resumeTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: "{{ Session::get('error') }}"
+            })
+        </script>
+    @endif
+
+    {{-- * SUCCESS MESSAGE * --}}
+    @if (Session::has('success'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000,
+                background: '#59b259',
+                color: '#ffff',
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.resumeTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: "{{ session()->get('success') }}"
+            })
+        </script>
+    @endif
+
+    {{-- * GET THE ACTION MODAL INSIDE THE MEDICINE CRUD FOLDER * --}}
+    @include('partials.medicine_crud.add_medicine')
+
+    {{-- * ADD BUTTON AND THE TABLE OF ALL MEDICINES * --}}
+    <div class="w-full p-5 rounded-lg md:p-10">
+        <div class="p-3 mx-4 mb-5 rounded-lg shadow-lg outline outline-dotted">
+            <div class="hidden p-1 mx-5 md:flex">
+                <label for="my-modal-3"
+                    class="font-bold text-black hover:ease-in btn bg-amber-500 hover:bg-amber-600 hover:duration-200">Add
+                    Medicine
+                </label>
+            </div>
+            <div class="flex items-center justify-center md:hidden">
+                <label for="my-modal-3"
+                    class="mt-5 font-bold text-center text-black hover:ease-in btn bg-amber-500 hover:bg-amber-600 hover:duration-200">Add
+                    Medicine
+                </label>
+            </div>
+            <div class="py-5 mx-5">
+                <livewire:medicine-table />
             </div>
         </div>
     </div>
-</div>
 @endsection
+
+{{-- * FOR PREVIEWING OF PICTURE * --}}
+<script>
+    var loadPreview = function(event) {
+        var preview = document.getElementById('loadPreviewImage');
+        preview.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
 
 @extends('partials.footer')
