@@ -17,16 +17,16 @@ class ValidateUsersLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Session::has('userLoggedIn') && ($request->path() != '/') || ($request->path() == '/u')) {
+        if (!Session::has('userLoggedIn') && ($request->path() != '/') && ($request->path() != '/register') || ($request->path() == '/u')) {
             abort('404');
         }
 
-        if (!Session::has('userLoggedIn') && ($request->path() != '/') || ($request->path() != '/u')) {
-            return $next($request)->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
-                ->header('Pragma', 'no-cache')
-                ->header('Expires', 'Sat 01 Jan 1990 00:00:00 GMT');
+        if (Session::has('userLoggedIn') && ($request->path() == '/') || ($request->path() == '/u')) {
+            return redirect()->back();
         }
 
-        return redirect()->back();
+        return $next($request)->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
+                ->header('Pragma', 'no-cache')
+                ->header('Expires', 'Sat, 01 Jan 1990 00:00:00 GMT');
     }
 }

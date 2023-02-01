@@ -1,12 +1,12 @@
 <div class="navbar bg-amber-500">
     <div class="flex-1 mx-6">
         <a href="{{ route('users-index') }}"
-            class="btn btn-ghost normal-case text-xl font-bold text-black hover:duration-100 hover:ease-in">
+            class="text-2xl font-bold text-black normal-case btn btn-ghost hover:duration-100 hover:ease-in">
             MEDICINE INVENTORY MANAGEMENT SYSTEM - QR CODE
         </a>
     </div>
     <div class="flex-none mx-6">
-        <ul class="menu menu-horizontal px-1 text-black font-semibold">
+        <ul class="px-1 font-semibold text-black menu menu-horizontal">
             <li class="hover:duration-100 hover:ease-in">
                 <a>Item 1</a>
             </li>
@@ -21,7 +21,7 @@
                         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                     </svg>
                 </a>
-                <ul class="p-2 bg-slate-800 text-white font-bold">
+                <ul class="p-2 font-bold text-white bg-slate-800">
                     <li class="hover:bg-amber-500 hover:text-black hover:duration-100 hover:ease-in">
                         <a>Submenu 1</a>
                     </li>

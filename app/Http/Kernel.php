@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\PreventToGoBack;
+use App\Http\Middleware\ValidateUsersLogin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,7 +65,7 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'preventToGoBack' => \App\Http\Middleware\PreventToGoBack::class,
-        'validateUsersLogin' => \App\Http\Middleware\ValidateUsersLogin::class,
+        'preventToGoBack' => PreventToGoBack::class,
+        'validateUsersLogin' => ValidateUsersLogin::class,
     ];
 }

@@ -31,7 +31,7 @@ Route::controller(LoginAndRegister::class)->group(function () {
 // * ======================================================= *//
 
 // * USERS *//
-Route::middleware(['preventToGoBack', 'validateUsersLogin'])->group(function () {
+Route::middleware('validateUsersLogin')->group(function () {
     Route::controller(UsersViewing::class)->group(function () {
         Route::get('/u', 'index')->name('users-index');
     });

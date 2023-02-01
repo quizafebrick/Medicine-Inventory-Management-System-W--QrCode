@@ -14,6 +14,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- * VITE CSS * --}}
     @vite('resources/css/app.css')
+    {{-- * LIVEWIRE * --}}
+    @livewireStyles
 </head>
 
 <body class="bg-slate-300">
