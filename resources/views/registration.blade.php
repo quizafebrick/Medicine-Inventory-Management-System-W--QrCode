@@ -1,29 +1,6 @@
-@extends('partial-front.header')
+@extends('partials.header')
 
 @section('registration')
-    {{-- ! ERROR MESSAGE ! --}}
-    @if ($errors->any())
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 4000,
-                background: '#f64341',
-                color: '#ffff',
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.resumeTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-            Toast.fire({
-                icon: 'error',
-                title: "There's something wrong..."
-            })
-        </script>
-    @endif
-
     {{-- ! ERROR MESSAGE ! --}}
     @if ($errors->any())
         <script>
@@ -117,11 +94,11 @@
                     </div>
                     <div class="flex items-center justify-center gap-5">
                         <button
-                            class="text-black font-bold bg-yellow-500 hover:bg-yellow-600 hover:duration-300 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
+                            class="text-black font-bold bg-amber-500 hover:bg-amber-600 hover:duration-300 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
                             Save Registration
                         </button>
                         <a href="{{ route('login') }}"
-                            class="text-black font-bold bg-yellow-500 hover:bg-yellow-600 hover:duration-300 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
+                            class="text-black font-bold bg-amber-500 hover:bg-amber-600 hover:duration-300 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
                             Sign In
                         </a>
                     </div>
@@ -132,4 +109,4 @@
     </div>
 @endsection
 
-@extends('partial-front.footer')
+@extends('partials.footer')

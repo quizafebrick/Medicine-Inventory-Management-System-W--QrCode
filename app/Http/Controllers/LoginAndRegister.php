@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequests;
-use App\Http\Requests\RegisterRequests;
 use App\Models\Accounts;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequests;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterRequests;
+use Illuminate\Support\Facades\Session;
 
 class LoginAndRegister extends Controller
 {
@@ -36,5 +37,14 @@ class LoginAndRegister extends Controller
         $loginRequests->session()->put('userLoggedIn', $userAccount->id);
 
         return to_route('users-index');
+    }
+
+    public function logout()
+    {
+        if (Session::has('userLoggedIn')) {
+            Session::pull('userLoggedIn');
+
+            return to_route('login');
+        }
     }
 }

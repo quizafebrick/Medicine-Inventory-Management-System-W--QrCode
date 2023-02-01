@@ -25,11 +25,14 @@ Route::controller(PublicDirectory::class)->group(function () {
 Route::controller(LoginAndRegister::class)->group(function () {
     Route::post('/save', 'createAccount')->name('save-register');
     Route::post('/logging_in', 'check')->name('check-login');
+    Route::get('/logged_out', 'logout')->name('logout');
 });
 
 // * ======================================================= *//
 
 // * USERS *//
-Route::controller(UsersViewing::class)->group(function () {
-    Route::get('/u', 'index')->name('users-index');
+Route::middleware(['preventToGoBack', 'validateUsersLogin'])->group(function () {
+    Route::controller(UsersViewing::class)->group(function () {
+        Route::get('/u', 'index')->name('users-index');
+    });
 });
