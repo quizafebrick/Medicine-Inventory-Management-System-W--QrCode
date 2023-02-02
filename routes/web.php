@@ -39,5 +39,9 @@ Route::middleware('validateUsersLogin')->group(function () {
 
     Route::controller(MedicinesController::class)->group(function () {
         Route::post('/u/save', 'store')->name('medicine-store');
+        Route::put('/u/update/{id}', 'update')->name('medicine-update');
+
     });
 });
+
+// * ======================================================= *//

@@ -88,7 +88,7 @@
                                 <span class="font-bold">Insert Photo:</span>
                                 <input type="file" name="image" id="image"
                                     class="w-full max-w-xs file-input file-input-bordered file-input-xs"
-                                    onchange="loadPreview(event)" />
+                                    onchange="loadPreview(event)"/>
                                 <span class="font-bold text-red-400">
                                     @error('image')
                                         {{ $message }}

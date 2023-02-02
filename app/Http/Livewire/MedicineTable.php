@@ -148,21 +148,19 @@ final class MedicineTable extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
     public function actions(): array
     {
        return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('medicine.edit', ['medicine' => 'id']),
+                Button::make('edit', 'Edit')
+                   ->class('bg-yellow-500 cursor-pointer px-3 py-2.5 m-1 rounded text-sm text-black font-bold hover:bg-yellow-600 hover:duration-200 ease-in')
+                   ->openModal('edit-medicine', ['id' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('medicine.destroy', ['medicine' => 'id'])
-               ->method('delete')
+        //    Button::make('destroy', 'Delete')
+        //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+        //        ->route('medicine.destroy', ['medicine' => 'id'])
+        //        ->method('delete')
         ];
     }
-    */
 
     /*
     |--------------------------------------------------------------------------

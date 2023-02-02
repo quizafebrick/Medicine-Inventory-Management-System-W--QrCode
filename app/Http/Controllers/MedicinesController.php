@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MedicineRequests;
+use App\Http\Requests\MedicineUpdateRequests;
 use App\Models\Medicine;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MedicinesController extends Controller
 {
@@ -27,9 +30,7 @@ class MedicinesController extends Controller
 
             $requests['image'] = $imageName;
         }
-
         $medicine->create($requests);
-        // dd($requests);
 
         return redirect()->back()->with('success', 'Medicine has been Saved Successfully!');
     }
@@ -63,9 +64,31 @@ class MedicinesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MedicineUpdateRequests $medicineUpdateRequests, Medicine $medicine, $id)
     {
-        //
+        $medicine->find($id);
+
+        $requests = $medicineUpdateRequests->validated();
+
+        if ($medicineUpdateRequests->hasFile('image')) {
+            $destinationPath = 'storage/image'.$medicine->image;
+
+            if (File::exists($destinationPath)) {
+                File::delete($destinationPath);
+            }
+
+            $updateImage = $medicineUpdateRequests->file('image');
+            $destinationPath2 = 'public/image';
+            $imageName = $updateImage->getClientOriginalName();
+            $updateImage->file('image')->storeAs($destinationPath2, $imageName);
+
+            $requests['image'] = $imageName;
+        }
+
+        $medicine->update($requests);
+
+        return to_route('users-index')->with('success', 'Medicine has been Saved Successfully!');
+
     }
 
     /**
