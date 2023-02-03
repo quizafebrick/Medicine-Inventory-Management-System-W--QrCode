@@ -128,9 +128,6 @@ final class MedicineTable extends PowerGridComponent
                 ->headerAttribute('text-center, text-lg')
                 ->bodyAttribute('text-center, text-lg, font-bold')
                 ->searchable(),
-            // Column::make('Status', 'expiration')
-            //     ->sortable()
-            //     ->makeInputDatePicker(),
         ];
     }
 
@@ -151,14 +148,17 @@ final class MedicineTable extends PowerGridComponent
     public function actions(): array
     {
        return [
-                Button::make('edit', 'Edit')
-                   ->class('bg-yellow-500 cursor-pointer px-3 py-2.5 m-1 rounded text-sm text-black font-bold hover:bg-yellow-600 hover:duration-200 ease-in')
-                   ->openModal('edit-medicine', ['id' => 'id']),
+            Button::make('show', 'Show')
+                ->class('bg-blue-500 cursor-pointer px-3 py-2.5 m-1 rounded text-sm text-black font-bold hover:bg-blue-600 hover:duration-200 ease-in')
+                ->openModal('medicine-show', ['id' => 'id']),
 
-        //    Button::make('destroy', 'Delete')
-        //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-        //        ->route('medicine.destroy', ['medicine' => 'id'])
-        //        ->method('delete')
+            Button::make('edit', 'Edit')
+                ->class('bg-yellow-500 cursor-pointer px-3 py-2.5 m-1 rounded text-sm text-black font-bold hover:bg-yellow-600 hover:duration-200 ease-in')
+                ->openModal('edit-medicine', ['id' => 'id']),
+
+            Button::make('destroy', 'Delete')
+               ->class('bg-red-600 cursor-pointer text-black px-3 py-2 m-1 rounded text-sm font-bold hover:bg-red-500 hover:duration-200 ease-in')
+            //    ->openModal('medicine-meshowdicine', ['id' => 'id']),
         ];
     }
 

@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.11",
         "power-components/livewire-powergrid": "^3.7",
+        "simplesoftwareio/simple-qrcode": "~4",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {

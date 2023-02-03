@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('reference_no');
             $table->string('name')->unique();
             $table->string('strength');
             $table->string('category_name');
