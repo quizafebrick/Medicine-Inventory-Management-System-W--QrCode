@@ -24,7 +24,7 @@ class MedicineRequests extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:medicines,name',
             'strength' => 'required',
             'category_name' => 'required',
             'expiration' => 'required',

@@ -22,6 +22,8 @@ class MedicinesController extends Controller
         $requests = $medicineRequests->validated();
 
         if ($medicineRequests->hasFile('image')) {
+            File::delete('image/' . $medicine->image);
+
             $destinationPath = 'public/image';
             $image = $medicineRequests->file('image');
             $imageName =  $image->getClientOriginalName();
@@ -66,29 +68,23 @@ class MedicinesController extends Controller
      */
     public function update(MedicineUpdateRequests $medicineUpdateRequests, Medicine $medicine, $id)
     {
-        $medicine->find($id);
-
-        $requests = $medicineUpdateRequests->validated();
-
         if ($medicineUpdateRequests->hasFile('image')) {
-            $destinationPath = 'storage/image'.$medicine->image;
+            // Storage::delete('public/image' . $medicine->image);
+            // $imagePath = storage_path() . 'image/' . $medicine->image;
+            File::delete(public_path() . 'images/' . $medicine->image);
 
-            if (File::exists($destinationPath)) {
-                File::delete($destinationPath);
-            }
+            $destinationPath = 'public/image';
+            $image = $medicineUpdateRequests->file('image');
+            $imageName =  $image->getClientOriginalName();
 
-            $updateImage = $medicineUpdateRequests->file('image');
-            $destinationPath2 = 'public/image';
-            $imageName = $updateImage->getClientOriginalName();
-            $updateImage->file('image')->storeAs($destinationPath2, $imageName);
+            $medicineUpdateRequests->file('image')->storeAs($destinationPath, $imageName);
 
-            $requests['image'] = $imageName;
+            $medicine->where('id', $id)->update($medicineUpdateRequests->validated() + ['image' => $imageName]);
         }
 
-        $medicine->update($requests);
+        $medicine->where('id', $id)->update($medicineUpdateRequests->validated());
 
         return to_route('users-index')->with('success', 'Medicine has been Saved Successfully!');
-
     }
 
     /**

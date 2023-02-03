@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('expiration');
             $table->string('ingredient');
             $table->string('quantity')->default(0);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

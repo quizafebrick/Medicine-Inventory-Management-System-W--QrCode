@@ -12,7 +12,8 @@
             <div class="form-control">
                 <span class="font-bold">Name:</span>
                 <input type="text" name="name" placeholder="Enter Name of Medicine"
-                    class="w-full max-w-sm input input-bordered" onkeyup="this.value = this.value.toUpperCase()" value="{{ $getMedicine->name }}"/>
+                    class="w-full max-w-sm input input-bordered" onkeyup="this.value = this.value.toUpperCase()"
+                    value="{{ $getMedicine->name }}" />
                 <span class="font-bold text-red-400">
                     @error('name')
                         {{ $message }}
@@ -22,7 +23,8 @@
             <div class="form-control">
                 <span class="font-bold">Category:</span>
                 <select class="w-full max-w-xs select select-bordered" name="category_name">
-                    <option disabled selected class="font-bold text-gray">{{ $getMedicine->category_name }}</option>
+                    <option disabled selected class="font-bold text-gray" value="{{ $getMedicine->category_name }}">
+                        {{ $getMedicine->category_name }}</option>
                     <option class="font-bold">Han Solo</option>
                     <option class="font-bold">Greedo</option>
                 </select>
@@ -36,7 +38,8 @@
                 <span class="font-bold">Quantity:</span>
                 <input type="text" name="quantity" placeholder="Enter Quantity"
                     class="w-full max-w-sm input input-bordered"
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" value="{{ $getMedicine->quantity }}"/>
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                    value="{{ $getMedicine->quantity }}" />
                 <span class="font-bold text-red-400">
                     @error('quantity')
                         {{ $message }}
@@ -46,7 +49,7 @@
             <div class="form-control">
                 <span class="font-bold">Expiration:</span>
                 <input type="date" name="expiration" placeholder="Type here"
-                    class="w-full max-w-sm input input-bordered" value="{{ $getMedicine->expiration }}"/>
+                    class="w-full max-w-sm input input-bordered" value="{{ $getMedicine->expiration }}" />
                 <span class="font-bold text-red-400">
                     @error('expiration')
                         {{ $message }}
@@ -56,7 +59,7 @@
             <div class="form-control">
                 <span class="font-bold">Strength:</span>
                 <input type="text" name="strength" placeholder="Type here"
-                    class="w-full max-w-sm input input-bordered" value="{{ $getMedicine->strength }}"/>
+                    class="w-full max-w-sm input input-bordered" value="{{ $getMedicine->strength }}" />
                 <span class="font-bold text-red-400">
                     @error('strength')
                         {{ $message }}
@@ -85,14 +88,16 @@
                 <br>
                 <div>
                     <span class="font-bold">New Preview:</span>
-                    <img class="w-full max-w-xs" id="loadPreviewImage2"/>
+                    <img class="w-full max-w-xs" id="loadPreviewImage2" />
                 </div>
             </div>
             <div class="form-control">
                 <span class="font-bold">Old Preview:</span>
-                <img class="w-full max-w-xs" src="{{ asset('storage/image/'. $getMedicine->image) }}"/>
+                <img class="w-full max-w-xs" src="{{ asset('storage/image/' . $getMedicine->image) }}" />
             </div>
         </div>
+
+        <input type="hidden" name="id" value="{{ $getMedicine->id }}">
 
         {{-- * FLEX CENTER BUTTON * --}}
         <div class="flex items-center justify-center mt-10">

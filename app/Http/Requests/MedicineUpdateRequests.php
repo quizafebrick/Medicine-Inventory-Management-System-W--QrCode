@@ -28,9 +28,11 @@ class MedicineUpdateRequests extends FormRequest
             'name' => [Rule::unique('medicines', 'name')->ignore($this->id)],
             'quantity' => 'required',
             'strength' => 'required',
-            'category_name' => 'required',
+            // 'category_name' => 'required',
             'expiration' => 'required',
             'ingredient' => 'required',
+            // 'image' => 'nullable|image|mimes:png,jpg,jpeg'
+
         ];
     }
 }
