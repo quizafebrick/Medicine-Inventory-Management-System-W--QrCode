@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MedicineRequests;
 use App\Http\Requests\MedicineUpdateRequests;
+use App\Models\Accounts;
 use App\Models\Medicine;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -11,6 +12,13 @@ use Illuminate\Support\Facades\Storage;
 
 class MedicinesController extends Controller
 {
+    public function print(Medicine $medicine)
+    {
+        $getMedicine = $medicine->get();
+
+        return view('partials.printTable', compact('getMedicine'));
+    }
+
     public function store(MedicineRequests $medicineRequests, Medicine $medicine)
     {
         $requests = $medicineRequests->validated();

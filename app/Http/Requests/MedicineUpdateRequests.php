@@ -30,7 +30,7 @@ class MedicineUpdateRequests extends FormRequest
             'strength' => 'required',
             // 'category_name' => 'required',
             'expiration' => 'required',
-            'ingredient' => 'required',
+            'description' => 'required',
             // 'image' => 'nullable|image|mimes:png,jpg,jpeg'
 
         ];

@@ -28,7 +28,7 @@ class MedicineRequests extends FormRequest
             'strength' => 'required',
             'category_name' => 'required',
             'expiration' => 'required',
-            'ingredient' => 'required',
+            'description' => 'required',
             'quantity' => 'required',
             'image' => 'required|image|mimes:png,jpg,jpeg'
         ];

@@ -10,8 +10,8 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.11",
-        "power-components/livewire-powergrid": "^3.7",
+        "livewire/livewire": "^2.10",
+        "power-components/livewire-powergrid": "^3.2",
         "simplesoftwareio/simple-qrcode": "~4",
         "wire-elements/modal": "^1.0"
     },

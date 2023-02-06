@@ -1,17 +1,17 @@
 {{-- * TO ATTAIN KNOWLEDGE, ADD THINGS EVERY DAY; TO ATTAIN WISDOM, SUBTRACT THINGS EVERY DAY. * --}}
 
-<div class="mt-10 text-black">
-    {{-- * CONTAINER OF MODAL * --}}
-    {{-- * GRID 2 COLUMNS * --}}
-    <form action="{{ route('medicine-update', $getMedicine->id) }}" method="POST" enctype="multipart/form-data">
-        @method('PUT')
-        @csrf
+{{-- * CONTAINER OF MODAL * --}}
+<div class="p-10 text-black bg-amber-500">
+    <div class="p-10 rounded-lg outline outline-2 bg-amber-600">
+        <h3 class="text-3xl font-bold text-center">UPDATE MEDICINE</h3>
 
-        <div class="p-5 mx-5 mb-10 bg-gray-400 rounded-lg outline outline-amber-600">
-            <h3 class="text-3xl font-bold text-center">UPDATE MEDICINE</h3>
-
+        {{-- * FORM * --}}
+        <form action="{{ route('medicine-update', $getMedicine->id) }}" method="POST" enctype="multipart/form-data">
             {{-- * GRID 2 COLUMNS * --}}
-            <div class="grid grid-cols-2 gap-3 mx-5">
+            {{-- * GRID 2 COLUMNS * --}}
+            @method('PUT')
+            @csrf
+            <div class="grid grid-cols-2 gap-3 mx-5 font-semibold">
                 <div class="form-control">
                     <span class="font-bold">Name:</span>
                     <input type="text" name="name" placeholder="Enter Name of Medicine"
@@ -51,8 +51,9 @@
                 </div>
                 <div class="form-control">
                     <span class="font-bold">Expiration:</span>
-                    <input type="date" name="expiration" placeholder="Type here"
-                        class="w-full max-w-sm input input-bordered" value="{{ $getMedicine->expiration }}" />
+                    <input type="date" name="expiration" id="expiration2"
+                        class="w-full max-w-sm input input-bordered expiration" value="{{ $getMedicine->expiration }}"
+                        required pattern="\d{4}-\d{2}-\d{2}" />
                     <span class="font-bold text-red-400">
                         @error('expiration')
                             {{ $message }}
@@ -70,8 +71,8 @@
                     </span>
                 </div>
                 <div class="form-control">
-                    <span class="font-bold">Ingredients:</span>
-                    <textarea class="resize-none textarea textarea-bordered" placeholder="Ingredients..." name="ingredient">{{ $getMedicine->ingredient }}</textarea>
+                    <span class="font-bold">Description:</span>
+                    <textarea class="resize-none textarea textarea-bordered" placeholder="Ingredients..." name="description">{{ $getMedicine->description }}</textarea>
                     <span class="font-bold text-red-400">
                         @error('ingredient')
                             {{ $message }}
@@ -104,10 +105,10 @@
             {{-- * FLEX CENTER BUTTON * --}}
             <div class="flex items-center justify-center mt-10">
                 <button
-                    class="text-black font-bold bg-amber-500 hover:bg-amber-600 hover:duration-300 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
+                    class="text-black font-bold bg-amber-400 hover:bg-amber-500 hover:duration-300 rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
                     Update Medicine
                 </button>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

@@ -28,7 +28,9 @@ final class MedicineTable extends PowerGridComponent
             Exportable::make('Data_Backup')
                 ->striped()
                 ->type(Exportable::TYPE_XLS),
-            Header::make()->showSearchInput(),
+            Header::make()
+                ->showToggleColumns()
+                ->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -88,7 +90,7 @@ final class MedicineTable extends PowerGridComponent
             ->addColumn('name')
             ->addColumn('category_name')
             ->addColumn('quantity')
-            ->addColumn('expiration')
+            ->addColumn('expiration', fn (Medicine $model) => Carbon::parse($model->expiration)->format('M/d/Y'))
             ->addColumn('ingredient')
             ->addColumn('strength')
             ->addColumn('image')
@@ -115,18 +117,18 @@ final class MedicineTable extends PowerGridComponent
         return [
             Column::make('Medicine Name', 'name')
                 ->sortable()
-                ->headerAttribute('text-center, text-lg')
-                ->bodyAttribute('text-center, text-lg, font-bold')
+                ->headerAttribute('text-center text-lg')
+                ->bodyAttribute('text-center text-md font-bold')
                 ->searchable(),
             Column::make('Quantity', 'quantity')
                 ->sortable()
-                ->headerAttribute('text-center, text-lg')
-                ->bodyAttribute('text-center, text-lg, font-bold')
+                ->headerAttribute('text-center text-lg')
+                ->bodyAttribute('text-center text-md font-bold')
                 ->searchable(),
             Column::make('Expiration Date', 'expiration')
                 ->sortable()
-                ->headerAttribute('text-center, text-lg')
-                ->bodyAttribute('text-center, text-lg, font-bold')
+                ->headerAttribute('text-center text-lg')
+                ->bodyAttribute('text-center text-md font-bold')
                 ->searchable(),
         ];
     }
@@ -147,7 +149,7 @@ final class MedicineTable extends PowerGridComponent
 
     public function actions(): array
     {
-       return [
+        return [
             Button::make('show', 'Show')
                 ->class('bg-blue-500 cursor-pointer px-3 py-2.5 m-1 rounded text-sm text-black font-bold hover:bg-blue-600 hover:duration-200 ease-in')
                 ->openModal('medicine-show', ['id' => 'id']),
@@ -157,8 +159,8 @@ final class MedicineTable extends PowerGridComponent
                 ->openModal('edit-medicine', ['id' => 'id']),
 
             Button::make('destroy', 'Delete')
-               ->class('bg-red-600 cursor-pointer text-black px-3 py-2 m-1 rounded text-sm font-bold hover:bg-red-500 hover:duration-200 ease-in')
-            //    ->openModal('medicine-meshowdicine', ['id' => 'id']),
+                ->class('bg-red-600 cursor-pointer text-black px-3 py-2 m-1 rounded text-sm font-bold hover:bg-red-500 hover:duration-200 ease-in'),
+            // //    ->openModal('medicine-meshowdicine', ['id' => 'id']),
         ];
     }
 
